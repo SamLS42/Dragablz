@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Legacy;
 namespace Dragablz.Dockablz.Tests
 {
     [TestFixture]
@@ -20,7 +21,7 @@ namespace Dragablz.Dockablz.Tests
         [TestCase(30, new[] { 6, 6, 6, 6, 6 })]
         public void WillCalculateCellsPerColumn(int totalCells, int[] expectedCellsPerColumn)
         {
-            var result = TilerCalculator.GetCellCountPerColumn(totalCells);
+            int[] result = TilerCalculator.GetCellCountPerColumn(totalCells);
 
             CollectionAssert.AreEqual(expectedCellsPerColumn, result);
         }

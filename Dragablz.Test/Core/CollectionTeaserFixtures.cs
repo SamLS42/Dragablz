@@ -1,7 +1,8 @@
-﻿using NUnit.Framework;
+﻿using FakeItEasy;
+using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using System.Collections;
 using System.Collections.Generic;
-using FakeItEasy;
 
 namespace Dragablz.Core.Tests
 {
@@ -11,45 +12,41 @@ namespace Dragablz.Core.Tests
         [Test]
         public void WillCreateForList()
         {
-            var myList = new ArrayList();
+            ArrayList myList = [];
 
-            CollectionTeaser collectionTeaser;
-            var result = CollectionTeaser.TryCreate(myList, out collectionTeaser);
+            bool result = CollectionTeaser.TryCreate(myList, out CollectionTeaser collectionTeaser);
 
-            Assert.IsTrue(result);
-            Assert.IsNotNull(collectionTeaser);
+            Assert.That(result, Is.True);
+            Assert.That(collectionTeaser, Is.Not.Null);
         }
 
         [Test]
         public void WillCreateForGenericCollection()
         {
-            var myList = A.Fake<ICollection<string>>();
+            ICollection<string> myList = A.Fake<ICollection<string>>();
 
-            CollectionTeaser collectionTeaser;
-            var result = CollectionTeaser.TryCreate(myList, out collectionTeaser);
+            bool result = CollectionTeaser.TryCreate(myList, out CollectionTeaser collectionTeaser);
 
-            Assert.IsTrue(result);
-            Assert.IsNotNull(collectionTeaser);
+            Assert.That(result);
+            Assert.That(collectionTeaser is not null);
         }
 
         [Test]
         public void WillCreateForCollection()
         {
-            var myList = A.Fake<ICollection>();
+            ICollection myList = A.Fake<ICollection>();
 
-            CollectionTeaser collectionTeaser;
-            var result = CollectionTeaser.TryCreate(myList, out collectionTeaser);
+            bool result = CollectionTeaser.TryCreate(myList, out CollectionTeaser collectionTeaser);
 
-            Assert.IsFalse(result);
-            Assert.IsNull(collectionTeaser);
+            Assert.That(result, Is.False);
+            Assert.That(collectionTeaser, Is.Null);
         }
 
         [Test]
         public void WillAddForList()
         {
-            var myList = new ArrayList();
-            CollectionTeaser collectionTeaser;
-            Assert.IsTrue(CollectionTeaser.TryCreate(myList, out collectionTeaser));
+            ArrayList myList = [];
+            Assert.That(CollectionTeaser.TryCreate(myList, out CollectionTeaser collectionTeaser), Is.True);
 
             collectionTeaser.Add("i am going to type this in, manually, twice.");
 
@@ -60,16 +57,15 @@ namespace Dragablz.Core.Tests
         [Test]
         public void WillRemoveForList()
         {
-            var myList = new ArrayList
-            {
+            ArrayList myList =
+            [
                 1,
                 2,
                 3,
                 4,
                 5
-            };
-            CollectionTeaser collectionTeaser;
-            Assert.IsTrue(CollectionTeaser.TryCreate(myList, out collectionTeaser));
+            ];
+            Assert.That(CollectionTeaser.TryCreate(myList, out CollectionTeaser collectionTeaser), Is.True);
 
             collectionTeaser.Remove(3);
 
@@ -79,9 +75,8 @@ namespace Dragablz.Core.Tests
         [Test]
         public void WillAddForGenericCollection()
         {
-            var myList = A.Fake<ICollection<string>>();
-            CollectionTeaser collectionTeaser;
-            Assert.IsTrue(CollectionTeaser.TryCreate(myList, out collectionTeaser));
+            ICollection<string> myList = A.Fake<ICollection<string>>();
+            Assert.That(CollectionTeaser.TryCreate(myList, out CollectionTeaser collectionTeaser), Is.True);
 
             collectionTeaser.Add("hello");
 
@@ -92,9 +87,8 @@ namespace Dragablz.Core.Tests
         [Test]
         public void WillRemoveForGenericCollection()
         {
-            var myList = A.Fake<ICollection<string>>();
-            CollectionTeaser collectionTeaser;
-            Assert.IsTrue(CollectionTeaser.TryCreate(myList, out collectionTeaser));
+            ICollection<string> myList = A.Fake<ICollection<string>>();
+            Assert.That(CollectionTeaser.TryCreate(myList, out CollectionTeaser collectionTeaser), Is.True);
 
             collectionTeaser.Remove("bye");
 
