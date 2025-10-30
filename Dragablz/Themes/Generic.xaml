@@ -32,7 +32,7 @@
     </Style>
 
     <Style TargetType="{x:Type themes:Ripple}">
-        <Setter Property="RecognizesAccessKey" Value="True" />
+        <Setter Property="RecognizesAccessKey" Value="true" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -266,7 +266,7 @@
                     <Path
                         x:Name="Path"
                         Data="M0.5,71 L70,0.5 M0.5,1 L70,70.5"
-                        SnapsToDevicePixels="True"
+                        SnapsToDevicePixels="true"
                         Stretch="Uniform"
                         Stroke="{TemplateBinding Foreground}"
                         StrokeEndLineCap="Square"
@@ -323,7 +323,7 @@
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             Focusable="False"
-                            RecognizesAccessKey="True"
+                            RecognizesAccessKey="true"
                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </Border>
                     <ControlTemplate.Triggers>
@@ -384,7 +384,7 @@
                             Width="6"
                             Height="6"
                             Data="M0.5,71 L70,0.5 M0.5,1 L70,70.5"
-                            SnapsToDevicePixels="True"
+                            SnapsToDevicePixels="true"
                             Stretch="Uniform"
                             Stroke="{TemplateBinding Foreground}"
                             StrokeEndLineCap="Square"
@@ -427,7 +427,7 @@
                             Width="6"
                             Height="6"
                             Data="M38,6L38.0003451911513,70.6666666666666 M70.3336667356886,38L5.50002465137562,38"
-                            SnapsToDevicePixels="True"
+                            SnapsToDevicePixels="true"
                             Stretch="Uniform"
                             Stroke="{TemplateBinding Foreground}"
                             StrokeEndLineCap="Square"
@@ -486,7 +486,7 @@
         </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="WindowState" Value="Maximized">
-                <Setter TargetName="PART_WindowRestoreThumb" Property="IsHitTestVisible" Value="True" />
+                <Setter TargetName="PART_WindowRestoreThumb" Property="IsHitTestVisible" Value="true" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -557,12 +557,12 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="WindowState" Value="Maximized">
-                            <Setter TargetName="PART_WindowRestoreThumb" Property="IsHitTestVisible" Value="True" />
+                            <Setter TargetName="PART_WindowRestoreThumb" Property="IsHitTestVisible" Value="true" />
                         </Trigger>
-                        <Trigger Property="IsBeingDraggedByTab" Value="True">
+                        <Trigger Property="IsBeingDraggedByTab" Value="true">
                             <Setter TargetName="SystemCommandsPanel" Property="Visibility" Value="Collapsed" />
                         </Trigger>
-                        <Trigger Property="IsActive" Value="True">
+                        <Trigger Property="IsActive" Value="true">
                             <Setter TargetName="CloseWindowCommandButton" Property="Background" Value="{StaticResource CloseCommandHighlightBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -573,10 +573,10 @@
             <Trigger Property="ResizeMode" Value="CanResizeWithGrip">
                 <Setter Property="Template" Value="{StaticResource WindowTemplateKey}" />
             </Trigger>
-            <Trigger Property="IsActive" Value="True">
+            <Trigger Property="IsActive" Value="true">
                 <Setter Property="Background" Value="{x:Static local:DragablzColors.WindowGlassBalancedBrush}" />
             </Trigger>
-            <Trigger Property="IsBeingDraggedByTab" Value="True">
+            <Trigger Property="IsBeingDraggedByTab" Value="true">
                 <Setter Property="Background" Value="Transparent" />
                 <Setter Property="BorderBrush" Value="Transparent" />
             </Trigger>
@@ -649,7 +649,7 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="IsOffered" Value="True">
+            <Trigger Property="IsOffered" Value="true">
                 <Setter Property="Opacity" Value="0.5" />
             </Trigger>
         </Style.Triggers>
@@ -661,7 +661,7 @@
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <Canvas IsItemsHost="True" />
+                    <Canvas IsItemsHost="true" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
@@ -673,7 +673,7 @@
                         Background="{TemplateBinding Panel.Background}"
                         BorderBrush="{TemplateBinding Border.BorderBrush}"
                         BorderThickness="{TemplateBinding Border.BorderThickness}"
-                        SnapsToDevicePixels="True">
+                        SnapsToDevicePixels="true">
                         <ScrollViewer
                             Width="{TemplateBinding ActualWidth}"
                             Height="{TemplateBinding ActualHeight}"
@@ -749,7 +749,7 @@
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <Canvas IsItemsHost="True" />
+                    <Canvas IsItemsHost="true" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
@@ -761,7 +761,7 @@
                         Background="{TemplateBinding Panel.Background}"
                         BorderBrush="{TemplateBinding Border.BorderBrush}"
                         BorderThickness="{TemplateBinding Border.BorderThickness}"
-                        SnapsToDevicePixels="True">
+                        SnapsToDevicePixels="true">
                         <ScrollViewer
                             Width="{TemplateBinding ActualWidth}"
                             Height="{TemplateBinding ActualHeight}"
@@ -793,7 +793,7 @@
                             Background="{TemplateBinding Panel.Background}"
                             BorderBrush="{TemplateBinding Border.BorderBrush}"
                             BorderThickness="{TemplateBinding Border.BorderThickness}"
-                            SnapsToDevicePixels="True">
+                            SnapsToDevicePixels="true">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -803,8 +803,7 @@
                                     x:Name="PART_Thumb"
                                     Width="30"
                                     Height="30"
-                                    VerticalAlignment="Center"
-                                    Background="{DynamicResource ControlOnImageFillColorDefaultBrush}" />
+                                    VerticalAlignment="Center" />
                                 <ContentPresenter
                                     Grid.Column="1"
                                     HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
@@ -820,10 +819,10 @@
             </Setter>
         </Style.Setters>
         <Style.Triggers>
-            <Trigger Property="IsDragging" Value="True">
+            <Trigger Property="IsDragging" Value="true">
                 <Setter Property="Opacity" Value=".95" />
             </Trigger>
-            <Trigger Property="IsSiblingDragging" Value="True">
+            <Trigger Property="IsSiblingDragging" Value="true">
                 <Setter Property="Opacity" Value=".5" />
             </Trigger>
         </Style.Triggers>
@@ -840,7 +839,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type local:HeaderedDragablzItem}">
                         <Grid Margin="{TemplateBinding Margin}">
-                            <Border Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}">
+                            <Border>
                                 <Border.Effect>
                                     <DropShadowEffect
                                         BlurRadius="10"
@@ -855,7 +854,7 @@
                                 Background="{TemplateBinding Panel.Background}"
                                 BorderBrush="{TemplateBinding Border.BorderBrush}"
                                 BorderThickness="{TemplateBinding Border.BorderThickness}"
-                                SnapsToDevicePixels="True">
+                                SnapsToDevicePixels="true">
                                 <DockPanel>
                                     <Grid Background="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" DockPanel.Dock="Top">
                                         <ContentPresenter
@@ -902,7 +901,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type local:HeaderedDragablzItem}">
                         <Grid Margin="{TemplateBinding Margin}">
-                            <Border Background="{DynamicResource LayerFillColorDefaultBrush}">
+                            <Border>
                                 <Border.Effect>
                                     <DropShadowEffect
                                         BlurRadius="10"
@@ -917,7 +916,7 @@
                                 Background="{TemplateBinding Panel.Background}"
                                 BorderBrush="{TemplateBinding Border.BorderBrush}"
                                 BorderThickness="{TemplateBinding Border.BorderThickness}"
-                                SnapsToDevicePixels="True">
+                                SnapsToDevicePixels="true">
                                 <DockPanel>
                                     <Grid Background="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" DockPanel.Dock="Top">
                                         <Thumb
@@ -1091,7 +1090,7 @@
                                 Background="{TemplateBinding Panel.Background}"
                                 BorderBrush="{TemplateBinding Border.BorderBrush}"
                                 BorderThickness="{TemplateBinding Border.BorderThickness}"
-                                SnapsToDevicePixels="True">
+                                SnapsToDevicePixels="true">
                                 <ContentPresenter
                                     Margin="{TemplateBinding Control.Padding}"
                                     HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
@@ -1126,7 +1125,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type local:DragablzItem}">
                         <Grid Margin="{TemplateBinding Margin}">
-                            <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}">
+                            <Border>
                                 <Border.Effect>
                                     <DropShadowEffect
                                         BlurRadius="10"
@@ -1141,7 +1140,7 @@
                                 Background="{TemplateBinding Panel.Background}"
                                 BorderBrush="{TemplateBinding Border.BorderBrush}"
                                 BorderThickness="{TemplateBinding Border.BorderThickness}"
-                                SnapsToDevicePixels="True">
+                                SnapsToDevicePixels="true">
                                 <Grid Cursor="ScrollAll">
                                     <ContentPresenter
                                         Margin="{TemplateBinding Control.Padding}"
@@ -1247,7 +1246,7 @@
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             Focusable="False"
-                            RecognizesAccessKey="True"
+                            RecognizesAccessKey="true"
                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </Border>
                     <ControlTemplate.Triggers>
@@ -1271,7 +1270,6 @@
 
     <Style x:Key="TrapezoidDragableTabItemStyle" TargetType="{x:Type local:DragablzItem}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-        <Setter Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
 
         <Setter Property="Margin" Value="0,0,0,0" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -1326,12 +1324,15 @@
                         </local:Trapezoid>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="local:TabablzControl.IsWrappingTabItem" Value="True">
+                        <Trigger Property="local:TabablzControl.IsWrappingTabItem" Value="true">
                             <Setter TargetName="contentPresenter" Property="Content" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DataContext.Header}" />
                         </Trigger>
-                        <Trigger Property="IsSelected" Value="True">
+                        <Trigger Property="IsSelected" Value="true">
                             <Setter TargetName="Trapezoid" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
                             <Setter TargetName="Trapezoid" Property="LongBasePenBrush" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Trapezoid" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1342,7 +1343,6 @@
     <!--  this style is effectively a duplicate of CoreTabItemStyle, allowing users to bind tabs in and immedietly get a standard tab look  -->
     <Style x:Key="StandardDragablzTabItemStyle" TargetType="{x:Type local:DragablzItem}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-        <Setter Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
 
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="6,2,6,2" />
@@ -1361,7 +1361,6 @@
                             <Border
                                 x:Name="innerBorder"
                                 Margin="-1"
-                                Background="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}"
                                 BorderThickness="1,1,1,0"
                                 Opacity="0" />
                         </Border>
@@ -1381,7 +1380,7 @@
                             Style="{StaticResource InvisibleThumbStyle}" />
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="local:TabablzControl.IsWrappingTabItem" Value="True">
+                        <Trigger Property="local:TabablzControl.IsWrappingTabItem" Value="true">
                             <Setter TargetName="contentPresenter" Property="Content" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DataContext.Header}" />
                         </Trigger>
                         <MultiDataTrigger>
@@ -1486,6 +1485,7 @@
                             <Setter TargetName="innerBorder" Property="Opacity" Value="1" />
                             <Setter TargetName="innerBorder" Property="BorderThickness" Value="1,1,0,1" />
                             <Setter TargetName="mainBorder" Property="BorderThickness" Value="1,1,0,1" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
                         </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
@@ -1505,6 +1505,7 @@
                             <Setter TargetName="innerBorder" Property="Opacity" Value="1" />
                             <Setter TargetName="innerBorder" Property="BorderThickness" Value="1,0,1,1" />
                             <Setter TargetName="mainBorder" Property="BorderThickness" Value="1,0,1,1" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
                         </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
@@ -1524,6 +1525,7 @@
                             <Setter TargetName="innerBorder" Property="Opacity" Value="1" />
                             <Setter TargetName="innerBorder" Property="BorderThickness" Value="0,1,1,1" />
                             <Setter TargetName="mainBorder" Property="BorderThickness" Value="0,1,1,1" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
                         </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
@@ -1535,7 +1537,7 @@
                         </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
+                                <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="true" />
                                 <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Top" />
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Panel.ZIndex" Value="1" />
@@ -1543,6 +1545,7 @@
                             <Setter TargetName="innerBorder" Property="Opacity" Value="1" />
                             <Setter TargetName="innerBorder" Property="BorderThickness" Value="1,1,1,0" />
                             <Setter TargetName="mainBorder" Property="BorderThickness" Value="1,1,1,0" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
                         </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1552,8 +1555,6 @@
 
     <Style x:Key="StandardDragablzTabItemVerticalStyle" TargetType="{x:Type local:DragablzItem}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-        <Setter Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
-
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="6,2,6,2" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -1570,7 +1571,6 @@
                             <Border
                                 x:Name="innerBorder"
                                 Margin="-1"
-                                Background="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}"
                                 BorderThickness="1,1,0,1"
                                 Opacity="0" />
                         </Border>
@@ -1590,7 +1590,7 @@
                             Style="{StaticResource InvisibleThumbStyle}" />
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="local:TabablzControl.IsWrappingTabItem" Value="True">
+                        <Trigger Property="local:TabablzControl.IsWrappingTabItem" Value="true">
                             <Setter TargetName="contentPresenter" Property="Content" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DataContext.Header}" />
                         </Trigger>
                         <MultiDataTrigger>
@@ -1710,6 +1710,7 @@
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Panel.ZIndex" Value="1" />
                             <Setter TargetName="innerBorder" Property="Opacity" Value="1" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
                             <!--
                             <Setter Property="Margin" Value="-2,-2,-2,0"/>
                             <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,1,1,0"/>
@@ -1733,6 +1734,7 @@
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Panel.ZIndex" Value="1" />
                             <Setter TargetName="innerBorder" Property="Opacity" Value="1" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
                             <!--
                             <Setter Property="Margin" Value="0,-2,-2,-2"/>
                             <Setter Property="BorderThickness" TargetName="innerBorder" Value="0,1,1,1"/>
@@ -1756,6 +1758,7 @@
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Panel.ZIndex" Value="1" />
                             <Setter TargetName="innerBorder" Property="Opacity" Value="1" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
                             <!--
                             <Setter Property="Margin" Value="-2,0,-2,-2"/>
                             <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,0,1,1"/>
@@ -1774,12 +1777,13 @@
                         </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
+                                <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="true" />
                                 <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Top" />
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Panel.ZIndex" Value="1" />
                             <Setter Property="Margin" Value="0,0,-2,0" />
                             <Setter TargetName="innerBorder" Property="Opacity" Value="1" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
                             <!--
                             <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,1,0,1"/>
                             <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,1,0,1"/>
@@ -1795,7 +1799,6 @@
         <Setter Property="Padding" Value="2" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource StandardDragablzTabItemStyle}" />
         <Setter Property="Template">
@@ -1927,7 +1930,7 @@
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter TargetName="templateRoot" Property="TextElement.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
                         </Trigger>
-                        <Trigger Property="IsDraggingWindow" Value="True">
+                        <Trigger Property="IsDraggingWindow" Value="true">
                             <Setter TargetName="DefaultAddButton" Property="Visibility" Value="Collapsed" />
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -2035,7 +2038,6 @@
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="Padding" Value="2,2,2,2" />
-        <Setter Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
         <Setter Property="PenThickness" Value=".5" />
         <Setter Property="Template">
             <Setter.Value>
@@ -2058,7 +2060,7 @@
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <Canvas ClipToBounds="True" IsItemsHost="True" />
+                    <Canvas ClipToBounds="true" IsItemsHost="true" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
@@ -2070,7 +2072,7 @@
                         Background="{TemplateBinding Panel.Background}"
                         BorderBrush="{TemplateBinding Border.BorderBrush}"
                         BorderThickness="{TemplateBinding Border.BorderThickness}"
-                        SnapsToDevicePixels="True">
+                        SnapsToDevicePixels="true">
                         <ItemsPresenter
                             Width="{TemplateBinding ItemsPresenterWidth}"
                             Height="{TemplateBinding ItemsPresenterHeight}"
