@@ -6,6 +6,10 @@
     xmlns:local="clr-namespace:Dragablz"
     xmlns:themes="clr-namespace:Dragablz.Themes">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/PresentationFramework.Fluent;component/Themes/Fluent.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <converters:EqualityToVisibilityConverter x:Key="EqualityToVisibilityConverter" />
     <converters:BooleanAndToVisibilityConverter x:Key="BooleanAndToVisibilityConverter" />
@@ -230,34 +234,16 @@
         </Setter>
     </Style>
 
-    <Color x:Key="CloseCommandHighlightColor">#e04343</Color>
+    <!--  Fluent / system-backed replacements (replaces previous hard-coded colors & brushes)  -->
+    <!--  Use the Windows Fluent accent and system brushes via SystemColors resource keys.  -->
+    <SolidColorBrush x:Key="CloseCommandHighlightBrush" Color="{DynamicResource {x:Static SystemColors.AccentColorKey}}" />
 
-    <!--  these tab styles are as close as possible to the default .net styles, so the tab will fit straight in to an unstyled app  -->
-    <SolidColorBrush x:Key="TabItem.Selected.Background" Color="#FFFFFF" />
-    <SolidColorBrush x:Key="TabItem.Selected.Border" Color="#ACACAC" />
-    <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD" />
-    <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070" />
-    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD" />
-    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1" />
-    <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6" />
-    <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B" />
-    <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4" />
-    <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5" />
-    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383" />
+    <!--  Tab / Button brushes mapped to system/fluent resources (no hard-coded hex values)  -->
 
-    <LinearGradientBrush x:Key="TabItem.Static.Background" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Offset="0.0" Color="#F0F0F0" />
-        <GradientStop Offset="1.0" Color="#E5E5E5" />
-    </LinearGradientBrush>
-    <SolidColorBrush x:Key="TabItem.Static.Border" Color="#ACACAC" />
-    <LinearGradientBrush x:Key="TabItem.MouseOver.Background" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Offset="0.0" Color="#ECF4FC" />
-        <GradientStop Offset="1.0" Color="#DCECFC" />
-    </LinearGradientBrush>
-    <SolidColorBrush x:Key="TabItem.MouseOver.Border" Color="#7EB4EA" />
-    <SolidColorBrush x:Key="TabItem.Disabled.Background" Color="#F0F0F0" />
-    <SolidColorBrush x:Key="TabItem.Disabled.Border" Color="#D9D9D9" />
-
+    <SolidColorBrush x:Key="Button.Static.Background" Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}" />
+    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+    <SolidColorBrush x:Key="Button.Pressed.Background" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+    <SolidColorBrush x:Key="Button.Disabled.Background" Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}" />
 
     <Style x:Key="InvisibleThumbStyle" TargetType="{x:Type Thumb}">
         <Setter Property="Background" Value="Transparent" />
@@ -315,7 +301,6 @@
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -347,8 +332,6 @@
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter TargetName="border" Property="Background" Value="{StaticResource Button.Disabled.Background}" />
-                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.Disabled.Border}" />
-                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground" Value="{StaticResource Button.Disabled.Foreground}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -357,7 +340,6 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Background" Value="{x:Static local:DragablzColors.WindowGlassBrush}" />
-                <Setter Property="Foreground" Value="{x:Static SystemColors.HighlightTextBrush}" />
             </Trigger>
             <Trigger Property="IsPressed" Value="true">
                 <Setter Property="Opacity" Value="1" />
@@ -376,14 +358,10 @@
         </Setter>
         <Setter Property="Width" Value="46" />
         <Setter Property="Margin" Value="0,0,4,0" />
-        <Setter Property="Foreground" Value="{x:Static SystemColors.HighlightTextBrush}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Background">
-                    <Setter.Value>
-                        <SolidColorBrush Color="{StaticResource CloseCommandHighlightColor}" />
-                    </Setter.Value>
-                </Setter>
+                <!--  use system/fluent accent brush directly  -->
+                <Setter Property="Background" Value="{DynamicResource CloseCommandHighlightBrush}" />
                 <Setter Property="Opacity" Value="1" />
             </Trigger>
         </Style.Triggers>
@@ -424,14 +402,9 @@
         <Setter Property="Width" Value="12" />
         <Setter Property="Height" Value="12" />
         <Setter Property="Margin" Value="4,0,2,0" />
-        <Setter Property="Foreground" Value="{x:Static SystemColors.HighlightTextBrush}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Background">
-                    <Setter.Value>
-                        <SolidColorBrush Color="{StaticResource CloseCommandHighlightColor}" />
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="Background" Value="{StaticResource CloseCommandHighlightBrush}" />
                 <Setter Property="Opacity" Value="1" />
             </Trigger>
         </Style.Triggers>
@@ -472,11 +445,9 @@
         <Setter Property="Width" Value="12" />
         <Setter Property="Height" Value="12" />
         <Setter Property="Margin" Value="4,0,2,0" />
-        <Setter Property="Foreground" Value="{x:Static SystemColors.HighlightTextBrush}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Background" Value="{x:Static local:DragablzColors.WindowGlassBrush}" />
-                <Setter Property="Foreground" Value="{x:Static SystemColors.HighlightTextBrush}" />
             </Trigger>
             <Trigger Property="IsPressed" Value="true">
                 <Setter Property="Opacity" Value="1" />
@@ -528,7 +499,6 @@
     </ControlTemplate>
 
     <Style TargetType="{x:Type local:DragablzWindow}">
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
         <Setter Property="Background" Value="{x:Static local:DragablzColors.WindowInactiveBrush}" />
         <Setter Property="BorderBrush" Value="{x:Static SystemColors.ActiveBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
@@ -593,11 +563,7 @@
                             <Setter TargetName="SystemCommandsPanel" Property="Visibility" Value="Collapsed" />
                         </Trigger>
                         <Trigger Property="IsActive" Value="True">
-                            <Setter TargetName="CloseWindowCommandButton" Property="Background">
-                                <Setter.Value>
-                                    <SolidColorBrush Color="{StaticResource CloseCommandHighlightColor}" />
-                                </Setter.Value>
-                            </Setter>
+                            <Setter TargetName="CloseWindowCommandButton" Property="Background" Value="{StaticResource CloseCommandHighlightBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -838,7 +804,7 @@
                                     Width="30"
                                     Height="30"
                                     VerticalAlignment="Center"
-                                    Background="Yellow" />
+                                    Background="{DynamicResource ControlOnImageFillColorDefaultBrush}" />
                                 <ContentPresenter
                                     Grid.Column="1"
                                     HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
@@ -866,7 +832,7 @@
     <Style TargetType="{x:Type local:HeaderedDragablzItem}">
         <Style.Setters>
             <Setter Property="Padding" Value="2" />
-            <Setter Property="BorderBrush" Value="{StaticResource TabItem.Static.Border}" />
+
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="Canvas.Left" Value="{Binding X, RelativeSource={RelativeSource Self}}" />
             <Setter Property="Canvas.Top" Value="{Binding Y, RelativeSource={RelativeSource Self}}" />
@@ -874,7 +840,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type local:HeaderedDragablzItem}">
                         <Grid Margin="{TemplateBinding Margin}">
-                            <Border Background="White">
+                            <Border Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}">
                                 <Border.Effect>
                                     <DropShadowEffect
                                         BlurRadius="10"
@@ -891,7 +857,7 @@
                                 BorderThickness="{TemplateBinding Border.BorderThickness}"
                                 SnapsToDevicePixels="True">
                                 <DockPanel>
-                                    <Grid Background="{StaticResource TabItem.Static.Background}" DockPanel.Dock="Top">
+                                    <Grid Background="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" DockPanel.Dock="Top">
                                         <ContentPresenter
                                             Margin="{TemplateBinding Control.Padding}"
                                             HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
@@ -926,7 +892,7 @@
 
     <Style x:Key="ToolDragablzItemStyle" TargetType="{x:Type local:HeaderedDragablzItem}">
         <Style.Setters>
-            <Setter Property="BorderBrush" Value="{StaticResource TabItem.Static.Border}" />
+
             <Setter Property="BorderThickness" Value="4" />
             <Setter Property="Canvas.Left" Value="{Binding X, RelativeSource={RelativeSource Self}}" />
             <Setter Property="Canvas.Top" Value="{Binding Y, RelativeSource={RelativeSource Self}}" />
@@ -936,7 +902,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type local:HeaderedDragablzItem}">
                         <Grid Margin="{TemplateBinding Margin}">
-                            <Border Background="White">
+                            <Border Background="{DynamicResource LayerFillColorDefaultBrush}">
                                 <Border.Effect>
                                     <DropShadowEffect
                                         BlurRadius="10"
@@ -953,7 +919,7 @@
                                 BorderThickness="{TemplateBinding Border.BorderThickness}"
                                 SnapsToDevicePixels="True">
                                 <DockPanel>
-                                    <Grid Background="{StaticResource TabItem.Static.Background}" DockPanel.Dock="Top">
+                                    <Grid Background="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" DockPanel.Dock="Top">
                                         <Thumb
                                             x:Name="PART_Thumb"
                                             HorizontalAlignment="Stretch"
@@ -1112,7 +1078,7 @@
 
     <Style x:Key="SizableFromBottomRightDragablzItemStyle" TargetType="{x:Type local:DragablzItem}">
         <Style.Setters>
-            <Setter Property="BorderBrush" Value="{StaticResource TabItem.Static.Border}" />
+
             <Setter Property="BorderThickness" Value="4" />
             <Setter Property="Canvas.Left" Value="{Binding X, RelativeSource={RelativeSource Self}}" />
             <Setter Property="Canvas.Top" Value="{Binding Y, RelativeSource={RelativeSource Self}}" />
@@ -1152,7 +1118,7 @@
 
     <Style x:Key="FloatingDragablzItemStyle" TargetType="{x:Type local:DragablzItem}">
         <Style.Setters>
-            <Setter Property="BorderBrush" Value="{StaticResource TabItem.Static.Border}" />
+
             <Setter Property="BorderThickness" Value="4" />
             <Setter Property="Canvas.Left" Value="{Binding X, RelativeSource={RelativeSource Self}}" />
             <Setter Property="Canvas.Top" Value="{Binding Y, RelativeSource={RelativeSource Self}}" />
@@ -1160,7 +1126,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type local:DragablzItem}">
                         <Grid Margin="{TemplateBinding Margin}">
-                            <Border Background="White">
+                            <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}">
                                 <Border.Effect>
                                     <DropShadowEffect
                                         BlurRadius="10"
@@ -1262,8 +1228,6 @@
     <Style x:Key="StandardEmbeddedButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
         <Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
-        <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}" />
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -1291,17 +1255,13 @@
                             <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="border" Property="Background" Value="{StaticResource Button.MouseOver.Background}" />
-                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.MouseOver.Border}" />
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorSecondaryBrush}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
                             <Setter TargetName="border" Property="Background" Value="{StaticResource Button.Pressed.Background}" />
-                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.Pressed.Border}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter TargetName="border" Property="Background" Value="{StaticResource Button.Disabled.Background}" />
-                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.Disabled.Border}" />
-                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground" Value="{StaticResource Button.Disabled.Foreground}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1311,9 +1271,8 @@
 
     <Style x:Key="TrapezoidDragableTabItemStyle" TargetType="{x:Type local:DragablzItem}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-        <Setter Property="Foreground" Value="Black" />
-        <Setter Property="Background" Value="{StaticResource TabItem.Static.Background}" />
-        <Setter Property="BorderBrush" Value="{StaticResource TabItem.Static.Border}" />
+        <Setter Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
+
         <Setter Property="Margin" Value="0,0,0,0" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
@@ -1371,8 +1330,8 @@
                             <Setter TargetName="contentPresenter" Property="Content" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DataContext.Header}" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter TargetName="Trapezoid" Property="Background" Value="{StaticResource TabItem.Selected.Background}" />
-                            <Setter TargetName="Trapezoid" Property="LongBasePenBrush" Value="{StaticResource TabItem.Selected.Background}" />
+                            <Setter TargetName="Trapezoid" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
+                            <Setter TargetName="Trapezoid" Property="LongBasePenBrush" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1383,9 +1342,8 @@
     <!--  this style is effectively a duplicate of CoreTabItemStyle, allowing users to bind tabs in and immedietly get a standard tab look  -->
     <Style x:Key="StandardDragablzTabItemStyle" TargetType="{x:Type local:DragablzItem}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-        <Setter Property="Foreground" Value="Black" />
-        <Setter Property="Background" Value="{StaticResource TabItem.Static.Background}" />
-        <Setter Property="BorderBrush" Value="{StaticResource TabItem.Static.Border}" />
+        <Setter Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
+
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="6,2,6,2" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -1403,8 +1361,7 @@
                             <Border
                                 x:Name="innerBorder"
                                 Margin="-1"
-                                Background="{StaticResource TabItem.Selected.Background}"
-                                BorderBrush="{StaticResource TabItem.Selected.Border}"
+                                Background="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}"
                                 BorderThickness="1,1,1,0"
                                 Opacity="0" />
                         </Border>
@@ -1432,8 +1389,8 @@
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
                                 <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Left" />
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="mainBorder" Property="Background" Value="{StaticResource TabItem.MouseOver.Background}" />
-                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="{StaticResource TabItem.MouseOver.Border}" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorSecondaryBrush}" />
+
                             <Setter TargetName="innerBorder" Property="BorderThickness" Value="1,1,0,1" />
                             <Setter TargetName="mainBorder" Property="BorderThickness" Value="1,1,0,1" />
                         </MultiDataTrigger>
@@ -1442,8 +1399,8 @@
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
                                 <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Bottom" />
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="mainBorder" Property="Background" Value="{StaticResource TabItem.MouseOver.Background}" />
-                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="{StaticResource TabItem.MouseOver.Border}" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorSecondaryBrush}" />
+
                             <Setter TargetName="innerBorder" Property="BorderThickness" Value="1,0,1,1" />
                             <Setter TargetName="mainBorder" Property="BorderThickness" Value="1,0,1,1" />
                         </MultiDataTrigger>
@@ -1452,8 +1409,8 @@
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
                                 <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Right" />
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="mainBorder" Property="Background" Value="{StaticResource TabItem.MouseOver.Background}" />
-                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="{StaticResource TabItem.MouseOver.Border}" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorSecondaryBrush}" />
+
                             <Setter TargetName="innerBorder" Property="BorderThickness" Value="0,1,1,1" />
                             <Setter TargetName="mainBorder" Property="BorderThickness" Value="0,1,1,1" />
                         </MultiDataTrigger>
@@ -1462,8 +1419,8 @@
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
                                 <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Top" />
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="mainBorder" Property="Background" Value="{StaticResource TabItem.MouseOver.Background}" />
-                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="{StaticResource TabItem.MouseOver.Border}" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorSecondaryBrush}" />
+
                             <Setter TargetName="innerBorder" Property="BorderThickness" Value="1,1,1,0" />
                             <Setter TargetName="mainBorder" Property="BorderThickness" Value="1,1,1,0" />
                         </MultiDataTrigger>
@@ -1473,8 +1430,8 @@
                                 <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Left" />
                             </MultiDataTrigger.Conditions>
                             <Setter TargetName="contentPresenter" Property="Opacity" Value="0.56" />
-                            <Setter TargetName="mainBorder" Property="Background" Value="{StaticResource TabItem.Disabled.Background}" />
-                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="{StaticResource TabItem.Disabled.Border}" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorTransparentBrush}" />
+
                             <Setter TargetName="innerBorder" Property="BorderThickness" Value="1,1,0,1" />
                             <Setter TargetName="mainBorder" Property="BorderThickness" Value="1,1,0,1" />
                         </MultiDataTrigger>
@@ -1484,8 +1441,8 @@
                                 <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Bottom" />
                             </MultiDataTrigger.Conditions>
                             <Setter TargetName="contentPresenter" Property="Opacity" Value="0.56" />
-                            <Setter TargetName="mainBorder" Property="Background" Value="{StaticResource TabItem.Disabled.Background}" />
-                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="{StaticResource TabItem.Disabled.Border}" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorTransparentBrush}" />
+
                             <Setter TargetName="innerBorder" Property="BorderThickness" Value="1,0,1,1" />
                             <Setter TargetName="mainBorder" Property="BorderThickness" Value="1,0,1,1" />
                         </MultiDataTrigger>
@@ -1495,8 +1452,8 @@
                                 <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Right" />
                             </MultiDataTrigger.Conditions>
                             <Setter TargetName="contentPresenter" Property="Opacity" Value="0.56" />
-                            <Setter TargetName="mainBorder" Property="Background" Value="{StaticResource TabItem.Disabled.Background}" />
-                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="{StaticResource TabItem.Disabled.Border}" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorTransparentBrush}" />
+
                             <Setter TargetName="innerBorder" Property="BorderThickness" Value="0,1,1,1" />
                             <Setter TargetName="mainBorder" Property="BorderThickness" Value="0,1,1,1" />
                         </MultiDataTrigger>
@@ -1506,8 +1463,8 @@
                                 <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Top" />
                             </MultiDataTrigger.Conditions>
                             <Setter TargetName="contentPresenter" Property="Opacity" Value="0.56" />
-                            <Setter TargetName="mainBorder" Property="Background" Value="{StaticResource TabItem.Disabled.Background}" />
-                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="{StaticResource TabItem.Disabled.Border}" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorTransparentBrush}" />
+
                             <Setter TargetName="innerBorder" Property="BorderThickness" Value="1,1,1,0" />
                             <Setter TargetName="mainBorder" Property="BorderThickness" Value="1,1,1,0" />
                         </MultiDataTrigger>
@@ -1595,9 +1552,8 @@
 
     <Style x:Key="StandardDragablzTabItemVerticalStyle" TargetType="{x:Type local:DragablzItem}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-        <Setter Property="Foreground" Value="Black" />
-        <Setter Property="Background" Value="{StaticResource TabItem.Static.Background}" />
-        <Setter Property="BorderBrush" Value="{StaticResource TabItem.Static.Border}" />
+        <Setter Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
+
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="6,2,6,2" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -1614,8 +1570,7 @@
                             <Border
                                 x:Name="innerBorder"
                                 Margin="-1"
-                                Background="{StaticResource TabItem.Selected.Background}"
-                                BorderBrush="{StaticResource TabItem.Selected.Border}"
+                                Background="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}"
                                 BorderThickness="1,1,0,1"
                                 Opacity="0" />
                         </Border>
@@ -1643,8 +1598,8 @@
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
                                 <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Left" />
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="mainBorder" Property="Background" Value="{StaticResource TabItem.MouseOver.Background}" />
-                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="{StaticResource TabItem.MouseOver.Border}" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorSecondaryBrush}" />
+
                             <!--
                             <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,1,1,0"/>
                             <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,1,1,0"/>
@@ -1655,8 +1610,8 @@
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
                                 <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Bottom" />
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="mainBorder" Property="Background" Value="{StaticResource TabItem.MouseOver.Background}" />
-                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="{StaticResource TabItem.MouseOver.Border}" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorSecondaryBrush}" />
+
                             <!--
                             <Setter Property="BorderThickness" TargetName="innerBorder" Value="0,1,1,1"/>
                             <Setter Property="BorderThickness" TargetName="mainBorder" Value="0,1,1,1"/>
@@ -1667,8 +1622,8 @@
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
                                 <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Right" />
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="mainBorder" Property="Background" Value="{StaticResource TabItem.MouseOver.Background}" />
-                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="{StaticResource TabItem.MouseOver.Border}" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorSecondaryBrush}" />
+
                             <!--
                             <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,0,1,1"/>
                             <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,0,1,1"/>
@@ -1679,8 +1634,8 @@
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
                                 <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Top" />
                             </MultiDataTrigger.Conditions>
-                            <Setter TargetName="mainBorder" Property="Background" Value="{StaticResource TabItem.MouseOver.Background}" />
-                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="{StaticResource TabItem.MouseOver.Border}" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorSecondaryBrush}" />
+
                             <!--
                             <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,1,0,1"/>
                             <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,1,0,1"/>
@@ -1692,8 +1647,8 @@
                                 <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Left" />
                             </MultiDataTrigger.Conditions>
                             <Setter TargetName="contentPresenter" Property="Opacity" Value="0.56" />
-                            <Setter TargetName="mainBorder" Property="Background" Value="{StaticResource TabItem.Disabled.Background}" />
-                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="{StaticResource TabItem.Disabled.Border}" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorTransparentBrush}" />
+
                             <!--
                             <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,1,1,0"/>
                             <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,1,1,0"/>
@@ -1705,8 +1660,8 @@
                                 <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Bottom" />
                             </MultiDataTrigger.Conditions>
                             <Setter TargetName="contentPresenter" Property="Opacity" Value="0.56" />
-                            <Setter TargetName="mainBorder" Property="Background" Value="{StaticResource TabItem.Disabled.Background}" />
-                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="{StaticResource TabItem.Disabled.Border}" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorTransparentBrush}" />
+
                             <!--
                             <Setter Property="BorderThickness" TargetName="innerBorder" Value="0,1,1,1"/>
                             <Setter Property="BorderThickness" TargetName="mainBorder" Value="0,1,1,1"/>
@@ -1718,8 +1673,8 @@
                                 <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Right" />
                             </MultiDataTrigger.Conditions>
                             <Setter TargetName="contentPresenter" Property="Opacity" Value="0.56" />
-                            <Setter TargetName="mainBorder" Property="Background" Value="{StaticResource TabItem.Disabled.Background}" />
-                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="{StaticResource TabItem.Disabled.Border}" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorTransparentBrush}" />
+
                             <!--
                             <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,0,1,1"/>
                             <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,0,1,1"/>
@@ -1731,8 +1686,8 @@
                                 <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Top" />
                             </MultiDataTrigger.Conditions>
                             <Setter TargetName="contentPresenter" Property="Opacity" Value="0.56" />
-                            <Setter TargetName="mainBorder" Property="Background" Value="{StaticResource TabItem.Disabled.Background}" />
-                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="{StaticResource TabItem.Disabled.Border}" />
+                            <Setter TargetName="mainBorder" Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorTransparentBrush}" />
+
                             <!--
                             <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,1,0,1"/>
                             <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,1,0,1"/>
@@ -1840,10 +1795,8 @@
         <Setter Property="Padding" Value="2" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Background" Value="{StaticResource TabItem.Selected.Background}" />
-        <Setter Property="BorderBrush" Value="{StaticResource TabItem.Selected.Border}" />
+        <Setter Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource StandardDragablzTabItemStyle}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -2082,8 +2035,7 @@
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="Padding" Value="2,2,2,2" />
-        <Setter Property="Background" Value="{StaticResource TabItem.Static.Background}" />
-        <Setter Property="PenBrush" Value="{StaticResource TabItem.Static.Border}" />
+        <Setter Property="Background" Value="{DynamicResource LayerOnMicaBaseAltFillColorDefaultBrush}" />
         <Setter Property="PenThickness" Value=".5" />
         <Setter Property="Template">
             <Setter.Value>

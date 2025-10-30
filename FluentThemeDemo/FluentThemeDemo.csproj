@@ -9,4 +9,8 @@
     <SupportedOSPlatformVersion>10.0.20348.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Dragablz\Dragablz.csproj" />
+  </ItemGroup>
+
 </Project>
